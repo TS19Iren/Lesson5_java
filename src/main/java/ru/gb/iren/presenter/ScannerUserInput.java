@@ -2,6 +2,9 @@ package ru.gb.iren.presenter;
 
 import java.util.Scanner;
 
+/**
+ * Класс для считывания данных из консоли пользователя
+ */
 public class ScannerUserInput {
     private final Scanner scanner;
 
@@ -13,5 +16,4 @@ public class ScannerUserInput {
         return scanner.nextLine();
 
     }
-
 }

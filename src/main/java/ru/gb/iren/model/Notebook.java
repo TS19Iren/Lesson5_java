@@ -24,7 +24,6 @@ public class Notebook {
     public void add(String title, String body) {
         Note note = new Note(title, body);
         notes.add(note);
-        System.out.println("Note successfully added");
     }
 
     public void remove(int index) {

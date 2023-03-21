@@ -27,11 +27,7 @@ public class NotebookPresenter {
         this.scannerUserInput = new ScannerUserInput();
     }
 
-    public void showAll() {
-        nb.printNotes();
-    }
-
-    public void start() throws IOException {
+       public void run() throws IOException {
         boolean isRun = true;
         while (isRun) {
             if (nb == null) {
@@ -43,7 +39,7 @@ public class NotebookPresenter {
             nv.showMenu();
             String ua = scannerUserInput.parseUserInput();
             switch (ua) {
-                case "1" -> showAll();
+                case "1" -> nb.printNotes();
                 case "2" -> {
                     if (nb.getNotes().isEmpty()) {
                         nv.printNoNotesToEditMessage();
@@ -69,13 +65,12 @@ public class NotebookPresenter {
                     nb.change(userIndex - 1, newNote);
                 }
                 case "3" -> {
-
                     nv.askAddTitle();
                     String title = scannerUserInput.parseUserInput();
                     nv.askAddBody();
                     String body = scannerUserInput.parseUserInput();
                     nb.add(title, body);
-
+                    nv.successAddMessage();
                 }
                 case "4" -> {
                     nv.askIndexRemoveNote();
