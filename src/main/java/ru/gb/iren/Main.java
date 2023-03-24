@@ -1,6 +1,6 @@
 package ru.gb.iren;
 
-import ru.gb.iren.presenter.NotebookPresenter;
+import ru.gb.iren.presenter.NotebookPresenterV2;
 
 import java.io.IOException;
 
@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        NotebookPresenter np = new NotebookPresenter();
+        Runnable np = new NotebookPresenterV2();
         np.run();
 
     }

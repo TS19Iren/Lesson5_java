@@ -1,11 +1,20 @@
 package ru.gb.iren.view;
 
+import ru.gb.iren.model.Note;
+
+import java.util.List;
+
 /**
  * Класс для вывода текста в консоль
  */
 public class NotebookView {
+    private final ScannerUserInput scannerUserInput;
 
-    public void showMenu() {
+    public NotebookView() {
+        this.scannerUserInput = new ScannerUserInput();
+    }
+
+    public String showMenu() {
         String menu = """
                 1.Show all notes
                 2.Edit note
@@ -15,41 +24,71 @@ public class NotebookView {
                 6.Read from file
                 0.Exit
                 """;
-        System.out.println(menu);
+        return askSomethingAndGetUserInputString(menu);
+
     }
 
-    public void askIndexEditElem() {
-        System.out.println("Enter index of note to edit: ");
+    public void printAll(List<Note> nb) {
+        System.out.println("List of notes:");
+        for (int i = 0; i < nb.size(); i++) {
+            System.out.println(i + 1 + ". " + nb.get(i));
+        }
     }
 
-    public void askEditTitle() {
-        System.out.println("Enter changed title or press enter if title is not changing: ");
+    public int askIndexEditElem() {
+        return getIndex("Enter index of note to edit: ");
     }
 
-    public void askEditBody() {
-        System.out.println("Enter changed body or press enter if body is not changing: ");
+    public String askEditTitle() {
+        return askSomethingAndGetUserInputString("Enter changed title or press enter if title is not changing: ");
     }
 
-    public void askAddTitle() {
-        System.out.println("Enter  title of added note: ");
+    public String askEditBody() {
+        return askSomethingAndGetUserInputString("Enter changed body or press enter if body is not changing: ");
     }
 
-    public void askAddBody() {
-        System.out.println("Enter  body of added note: ");
+    public String askAddTitle() {
+        return askSomethingAndGetUserInputString("Enter  title of added note: ");
     }
-    public void successAddMessage(){
+
+    public String askAddBody() {
+        return askSomethingAndGetUserInputString("Enter  body of added note: ");
+    }
+
+    public void successAddMessage() {
         System.out.println("Note successfully added");
     }
 
-    public void askIndexRemoveNote() {
-        System.out.println("Enter index of removing note: ");
+    public int askIndexRemoveNote() {
+        return getIndex("Enter index of removing note: ");
     }
 
-    public void askOwnerName() {
-        System.out.println("Enter you name: ");
+    public String askOwnerName() {
+        return askSomethingAndGetUserInputString("Enter you name: ");
     }
 
     public void printNoNotesToEditMessage() {
         System.out.println("There is no notes to edit. Add one before.");
+    }
+
+    private String getUserInputString() {
+        return scannerUserInput.parseUserInput();
+    }
+
+    private String askSomethingAndGetUserInputString(String text) {
+        System.out.println(text);
+        return getUserInputString();
+    }
+
+    private int getIndex(String text) {
+        while (true) {
+            try {
+                System.out.println(text);
+                return Integer.parseInt(getUserInputString());
+            } catch (NumberFormatException numberFormatException) {
+                System.out.println("Enter the integer value");
+
+            }
+        }
     }
 }

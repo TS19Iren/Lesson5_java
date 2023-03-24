@@ -1,4 +1,4 @@
-package ru.gb.iren.presenter;
+package ru.gb.iren.view;
 
 import java.util.Scanner;
 

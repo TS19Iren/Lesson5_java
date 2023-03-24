@@ -24,6 +24,8 @@ public class Notebook {
     public void add(String title, String body) {
         Note note = new Note(title, body);
         notes.add(note);
+    }public void add(Note note) {
+        notes.add(note);
     }
 
     public void remove(int index) {
@@ -58,6 +60,10 @@ public class Notebook {
 
     public void printNotes() {
         System.out.println(notes);
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
     }
 
     public Note getElemByIndex(int index) {
